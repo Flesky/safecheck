@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { TabPanel } from "@headlessui/vue";
-import {onActivated, onMounted, ref} from "vue";
+import { onActivated, onMounted, ref } from "vue";
 const props = defineProps({
   name: String,
   handle: String,
@@ -9,7 +9,7 @@ const props = defineProps({
 const showHelp = ref<boolean>(false);
 
 onActivated(() => {
-  showHelp.value = false
+  showHelp.value = false;
   setTimeout(() => {
     showHelp.value = true;
   }, 5000);
@@ -17,7 +17,7 @@ onActivated(() => {
 </script>
 
 <template>
-  <TabPanel class="px-1.5">
+  <TabPanel class="px-1.5 md:mx-auto md:max-w-screen-sm md:px-3">
     <a
       class="twitter-timeline"
       data-dnt="true"

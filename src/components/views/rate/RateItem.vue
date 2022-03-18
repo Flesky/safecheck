@@ -8,8 +8,10 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="mt-4 -mx-4 px-4 flex items-center bg-gray-50 active:brightness-95 select-none">
-    <div class="flex grow flex-col mr-4">
+  <div
+    class="-mx-4 mt-4 flex select-none items-center bg-gray-50 px-4 active:brightness-95"
+  >
+    <div class="mr-4 flex grow flex-col">
       <h3 class="font-medium">
         <slot name="header"></slot>
       </h3>

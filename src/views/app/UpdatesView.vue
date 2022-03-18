@@ -46,7 +46,7 @@ function removeScript() {
   <TabGroup @change="changePage">
     <section>
       <h2>Select account</h2>
-      <TabList class="flex flex-wrap gap-x-1 gap-y-1 mt-4">
+      <TabList class="mt-4 flex flex-wrap gap-x-1 gap-y-1">
         <TabComponent>Department of Health</TabComponent>
         <TabComponent>National Task Force</TabComponent>
         <TabComponent>World Health Organization</TabComponent>

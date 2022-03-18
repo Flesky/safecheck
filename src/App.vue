@@ -8,7 +8,7 @@ import IconClose from "@/components/icons/IconClose.vue";
   <div class="flex h-full max-h-full flex-col break-words">
     <div
       v-if="store.error || store.message"
-      class="fixed inset-0 flex border-b p-4 text-white shadow z-30 h-max"
+      class="fixed inset-0 z-30 flex h-max border-b p-4 text-white shadow"
       :class="[store.error ? ' bg-red-700' : 'bg-green-700']"
     >
       <p class="grow">{{ store.error || store.message }}</p>

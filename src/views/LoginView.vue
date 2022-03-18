@@ -43,7 +43,7 @@ function handleLogin() {
         @click="handleLogin"
         :loading="isLoading"
         type="white"
-        class="flex max-w-xs shadow w-full"
+        class="flex w-full max-w-xs shadow"
       >
         <IconGoogle class="shrink" />
         <span class="ml-3 w-full text-center"> Log in with Google</span>

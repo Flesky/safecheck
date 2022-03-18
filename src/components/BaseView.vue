@@ -9,7 +9,7 @@ import IconPersonFill from "@/components/icons/IconPersonFill.vue";
 </script>
 
 <template>
-  <div class="flex flex-col h-full bg-gray-50">
+  <div class="flex h-full flex-col bg-gray-50">
     <div class="flex h-full flex-col">
       <div class="grow overflow-y-auto">
         <slot></slot>

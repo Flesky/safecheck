@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import IconCheck from "@/components/icons/IconCheck.vue";
-import IconX from "@/components/icons/IconX.vue"
+import IconX from "@/components/icons/IconX.vue";
 
 const props = defineProps({ review: Object });
 const data = Object.values(props.review!)[0];
@@ -35,18 +35,17 @@ Object.entries(data).forEach(([k, v]) => {
       </div>
     </div>
     <div class="mt-1 flex items-center justify-between">
-      <div>
-        Requires vaccination
-      </div>
-      <IconCheck v-if="data.requiresVaccination" class="w-5 h-5 fill-green-600"/>
-      <IconX v-else class="w-5 h-5 fill-red-700"/>
+      <div>Requires vaccination</div>
+      <IconCheck
+        v-if="data.requiresVaccination"
+        class="h-5 w-5 fill-green-600"
+      />
+      <IconX v-else class="h-5 w-5 fill-red-700" />
     </div>
     <div class="mt-1 flex items-center justify-between">
-      <div>
-        Accepts cashless payments
-      </div>
-      <IconCheck v-if="data.acceptsCashless" class="w-5 h-5 fill-green-600"/>
-      <IconX v-else class="w-5 h-5 fill-red-700"/>
+      <div>Accepts cashless payments</div>
+      <IconCheck v-if="data.acceptsCashless" class="h-5 w-5 fill-green-600" />
+      <IconX v-else class="h-5 w-5 fill-red-700" />
     </div>
     <div class="mt-1">
       <div>Score</div>
@@ -62,14 +61,23 @@ Object.entries(data).forEach(([k, v]) => {
         :style="{ width: 'calc(' + data.score / 8 + ' * 100%)' }"
       ></div>
     </div>
-    <div class="mt-4 flex flex-wrap gap-x-1 gap-y-2 pb-2" v-if="comments.length">
+    <div
+      class="mt-4 flex flex-wrap gap-x-1 gap-y-2 pb-2"
+      v-if="comments.length"
+    >
       <div
-        class="rounded rounded-full bg-red-700 text-sm text-white font-medium px-3 py-2"
-        v-for="(comment, i) in comments" :key="i"
+        class="rounded rounded-full bg-red-700 px-3 py-2 text-sm font-medium text-white"
+        v-for="(comment, i) in comments"
+        :key="i"
       >
         {{ comment }}
       </div>
     </div>
-    <div v-else class="mt-4 bg-green-600 text-sm text-white px-3 py-2 mb-2 font-medium rounded-full w-max">Perfect!</div>
+    <div
+      v-else
+      class="mt-4 mb-2 w-max rounded-full bg-green-600 px-3 py-2 text-sm font-medium text-white"
+    >
+      Perfect!
+    </div>
   </div>
 </template>

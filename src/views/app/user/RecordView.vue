@@ -36,7 +36,7 @@ onMounted(() => {
     })
     .catch((error) => {
       if (error.code === "storage/object-not-found") {
-        photoUrl.value = false
+        photoUrl.value = false;
         return;
       } else {
         store.error = error;

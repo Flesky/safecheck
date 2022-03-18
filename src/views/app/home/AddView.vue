@@ -21,10 +21,20 @@ import IconSelector from "@/components/icons/IconSelector.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
 import { store } from "@/store";
 import {
-  doc, setDoc, getFirestore, collection, addDoc, updateDoc
+  doc,
+  setDoc,
+  getFirestore,
+  collection,
+  addDoc,
+  updateDoc,
 } from "firebase/firestore";
-import {getDownloadURL, getStorage, ref as firebaseRef, uploadBytes} from "firebase/storage";
-import {useRouter} from "vue-router";
+import {
+  getDownloadURL,
+  getStorage,
+  ref as firebaseRef,
+  uploadBytes,
+} from "firebase/storage";
+import { useRouter } from "vue-router";
 
 interface City {
   name: string;
@@ -56,7 +66,8 @@ Object.entries(regionData).forEach((regionEntry) => {
 const types: Array<Type> = [
   {
     name: "Attractions and leisure",
-    examples: "Amusement parks, bars, casinos, malls, movie theaters, parks, stadiums",
+    examples:
+      "Amusement parks, bars, casinos, malls, movie theaters, parks, stadiums",
   },
   {
     name: "Stores",
@@ -112,7 +123,7 @@ const city = ref<City>();
 const type = ref<Type>();
 
 const fileInput = ref<HTMLInputElement>();
-const photoUrl = ref<string>()
+const photoUrl = ref<string>();
 
 function handleLoadImage() {
   const file = fileInput.value?.files![0];
@@ -120,40 +131,43 @@ function handleLoadImage() {
     return (store.error = "Please select a .jpg file.");
   if (file!.size > 10485760)
     return (store.error = "Max file size limit is 10 MB.");
-  photoUrl.value = URL.createObjectURL(file as Blob)
+  photoUrl.value = URL.createObjectURL(file as Blob);
 }
 
-const router = useRouter()
+const router = useRouter();
 
 function handleSubmit() {
   if (!(name.value && city.value && type.value && photoUrl.value)) {
-    return store.error = "Please accomplish all fields."
+    return (store.error = "Please accomplish all fields.");
   }
 
-  const db = getFirestore()
-  const storage = getStorage()
+  const db = getFirestore();
+  const storage = getStorage();
   addDoc(collection(db, "places"), {
     name: name.value,
     city: city.value?.name,
     province: city.value?.province,
     region: city.value?.region,
-    type: type.value
+    type: type.value,
   })
-  .then(docRef => {
-    const photoRef = firebaseRef(
+    .then((docRef) => {
+      const photoRef = firebaseRef(
         storage,
         "places/" + docRef.id + "/place.jpg"
-    );
-    uploadBytes(photoRef, fileInput.value?.files![0] as Blob).then((snapshot) => {
-      getDownloadURL(photoRef).then(url => {
-        updateDoc(docRef, {
-          photoUrl: url
-        }).then(() => {
-          router.push('/rate/' + docRef.id)
-        })
-      })
-    });
-  }).catch(error => store.error = error)
+      );
+      uploadBytes(photoRef, fileInput.value?.files![0] as Blob).then(
+        (snapshot) => {
+          getDownloadURL(photoRef).then((url) => {
+            updateDoc(docRef, {
+              photoUrl: url,
+            }).then(() => {
+              router.push("/rate/" + docRef.id);
+            });
+          });
+        }
+      );
+    })
+    .catch((error) => (store.error = error));
 }
 </script>
 
@@ -272,13 +286,19 @@ function handleSubmit() {
           >
         </template>
         <template v-else>
-          <ButtonComponent class="mt-4 w-full" @click="fileInput.click()" type="secondary"
+          <ButtonComponent
+            class="mt-4 w-full"
+            @click="fileInput.click()"
+            type="secondary"
             >Upload photo</ButtonComponent
           >
         </template>
       </div>
     </section>
     <section>
-      <ButtonComponent class=" w-full" type="primary" @click="handleSubmit">Submit</ButtonComponent></section>
+      <ButtonComponent class="w-full" type="primary" @click="handleSubmit"
+        >Submit</ButtonComponent
+      >
+    </section>
   </BaseActivity>
 </template>

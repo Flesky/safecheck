@@ -15,7 +15,7 @@ import { ref } from "vue";
 import ViewHeader from "@/components/ViewHeader.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
 import ReviewItem from "@/components/views/place/ReviewItem.vue";
-import {RouterLink} from "vue-router";
+import { RouterLink } from "vue-router";
 
 const router = useRouter();
 const establishment = ref<object>();
@@ -60,16 +60,16 @@ getDoc(docRef)
     </ViewHeader>
     <section v-if="establishment">
       <h3 class="font-medium">Type</h3>
-      <div class="mt-2">{{establishment.type}}</div>
+      <div class="mt-2">{{ establishment.type }}</div>
       <h3 class="mt-4 font-medium">Image</h3>
-      <img class="rounded mt-2" :src="establishment.photoUrl" />
+      <img class="mt-2 rounded" :src="establishment.photoUrl" />
     </section>
-    <hr class="mt-2">
+    <hr class="mt-2" />
     <section v-if="reviews">
       <h2>Reviews</h2>
       <router-link :to="'/rate/' + id" v-slot="{ navigate }">
         <ButtonComponent @click="navigate" class="mt-4 w-full"
-        >Add a review</ButtonComponent
+          >Add a review</ButtonComponent
         ></router-link
       >
       <ReviewItem v-for="(review, i) in reviews" :key="i" :review="review" />

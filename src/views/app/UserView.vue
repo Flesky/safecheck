@@ -4,16 +4,16 @@ import { useRouter } from "vue-router";
 import { store } from "@/store";
 import ViewHeader from "@/components/ViewHeader.vue";
 import ButtonComponent from "@/components/ButtonComponent.vue";
-import {ref} from "vue";
+import { ref } from "vue";
 
 const router = useRouter();
 const user: User = store.user!;
 
-const isLoading = ref<boolean>(false)
+const isLoading = ref<boolean>(false);
 
 function handleLogout() {
   const auth = getAuth();
-  isLoading.value = true
+  isLoading.value = true;
   signOut(auth).then(() => {
     router.push("/login");
     router.go(0);
@@ -22,7 +22,7 @@ function handleLogout() {
 </script>
 
 <template>
-  <router-view/>
+  <router-view />
   <ViewHeader>
     <template #header>User</template>
     <template #text>See information about your user account.</template>
@@ -54,7 +54,11 @@ function handleLogout() {
         <div class="break-words text-sm text-gray-500">{{ user.email }}</div>
       </div>
     </div>
-    <ButtonComponent :loading="isLoading" class="mt-4 w-full" @click="handleLogout" type="secondary"
+    <ButtonComponent
+      :loading="isLoading"
+      class="mt-4 w-full"
+      @click="handleLogout"
+      type="secondary"
       >Log out</ButtonComponent
     >
   </section>
@@ -64,7 +68,13 @@ function handleLogout() {
     <h2>About SafeCheck</h2>
     <p class="mt-2">
       SafeCheck contributes to a healthier New Normal through your
-      contributions. Developed by Overkill @Baron Rodrigo.
+      contributions. Developed by @Baron Rodrigo.
     </p>
+  </section>
+  <section>
+    <img
+      src="@/assets/illustrations/medicine.svg"
+      class="mx-auto w-full max-w-sm"
+    />
   </section>
 </template>

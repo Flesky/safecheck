@@ -1,7 +1,7 @@
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="w-8 h-8 fill-current"
+    class="h-8 w-8 fill-current"
     viewBox="0 0 16 16"
   >
     <path

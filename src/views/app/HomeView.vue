@@ -38,13 +38,6 @@ const period = getPeriod(Date.now());
       }}</template
     >
     <template #text>
-      <!--      {{-->
-      <!--        {-->
-      <!--          [TIME_PERIODS.MORNING]: "What's our plans today",-->
-      <!--          [TIME_PERIODS.AFTERNOON]: "Where are we headed to",-->
-      <!--          [TIME_PERIODS.EVENING]: "What's on your mind",-->
-      <!--        }[period]-->
-      <!--      }}-->
       {{
         {
           [TIME_PERIODS.MORNING]: "What's our plans today",
@@ -84,10 +77,22 @@ const period = getPeriod(Date.now());
       >
     </router-link>
   </section>
-  <section>
+  <section v-if="period === TIME_PERIODS['MORNING']">
     <img
       class="mx-auto w-full max-w-sm"
-      src="@/assets/illustrations/undraw_mornings_re_cofi.svg"
+      src="@/assets/illustrations/morning.svg"
+    />
+  </section>
+  <section v-if="period === TIME_PERIODS['AFTERNOON']">
+    <img
+        class="mx-auto w-full max-w-sm"
+        src="@/assets/illustrations/afternoon.svg"
+    />
+  </section>
+  <section v-if="period === TIME_PERIODS['EVENING']">
+    <img
+        class="mx-auto w-full max-w-sm"
+        src="@/assets/illustrations/evening.svg"
     />
   </section>
 </template>
